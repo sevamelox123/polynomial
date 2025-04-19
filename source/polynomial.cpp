@@ -1,13 +1,13 @@
 #include "polynomial.hpp"
 #include <math.h>
 
-void TetoPolynomial::addVar(double k, unsigned long pow)
+void TetoPolynomial::addVar(double c, unsigned long pow)
 {
     for(std::size_t i =0; i<length;i++)
     {
         if(vdata[i].pow == pow)
         {
-            vdata[i].k+=k;
+            vdata[i].c+=c;
             return;
         }
     }
@@ -20,13 +20,13 @@ void TetoPolynomial::addVar(double k, unsigned long pow)
             throw std::bad_alloc();
         }
     }
-    vdata[length++] = Variable{k, pow};
+    vdata[length++] = Variable{c, pow};
 }
 
 
 void TetoPolynomial::addVar(Variable var)
 {
-    addVar(var.k,var.pow);
+    addVar(var.c,var.pow);
 }
 
 Variable &TetoPolynomial::getVar(unsigned long pow)
@@ -110,11 +110,11 @@ TetoPolynomial::~TetoPolynomial()
     }
 }
 
-double TetoPolynomial::Calculate(double val)
+double TetoPolynomial::calculate(double val)
 {
     double result = 0;
     for (std::size_t i = 0;i < length;i++) {
-        result += vdata[i].k * std::pow(val, vdata[i].pow);
+        result += vdata[i].c * std::pow(val, vdata[i].pow);
     }
     return result;
 }
@@ -123,7 +123,7 @@ void TetoPolynomial::printData()
 {
     for(std::size_t i =0 ; i<length; i++)
     {
-        std::cout <<"k = "<< vdata[i].k<<" | " << "pow = " << vdata[i].pow<< std::endl;
+        std::cout <<"k = "<< vdata[i].c<<" | " << "pow = " << vdata[i].pow<< std::endl;
     }
 }
 

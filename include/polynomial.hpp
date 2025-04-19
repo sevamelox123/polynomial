@@ -28,7 +28,7 @@ public:
     [[nodiscard]]
     double Calculate(double val);
 
-    int getLength();
+    void getData();
 
 
 };

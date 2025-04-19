@@ -103,7 +103,10 @@ double TetoPolynomial::Calculate(double val)
     return result;
 }
 
-int TetoPolynomial::getLength()
+void TetoPolynomial::getData()
 {
-    return length;
+    for(std::size_t i =0 ; i<length; i++)
+    {
+        std::cout <<"k = "<< vdata[i].k<<" | " << "pow = " << vdata[i].pow<< std::endl;
+    }
 }

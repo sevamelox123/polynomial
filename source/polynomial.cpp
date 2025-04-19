@@ -29,6 +29,22 @@ void TetoPolynomial::addVar(Variable var)
     addVar(var.k,var.pow);
 }
 
+Variable &TetoPolynomial::getVar(unsigned long pow)
+{
+    Variable* result = nullptr;
+    for (std::size_t i = 0;i < length;i++) {
+        if (vdata[i].pow == pow) {
+            result = &vdata[i];
+            break;
+        }
+    }
+    if (result == nullptr) {
+        addVar(0, pow);
+        result = &vdata[length - 1];
+    }
+    return *result;
+}
+
 TetoPolynomial::TetoPolynomial(Variable var)
 {
     addVar(var);
@@ -103,10 +119,33 @@ double TetoPolynomial::Calculate(double val)
     return result;
 }
 
-void TetoPolynomial::getData()
+void TetoPolynomial::printData()
 {
     for(std::size_t i =0 ; i<length; i++)
     {
         std::cout <<"k = "<< vdata[i].k<<" | " << "pow = " << vdata[i].pow<< std::endl;
     }
+}
+
+Variable &TetoPolynomial::at(unsigned long pow)
+{
+    bool flag = false;
+    for(size_t i = 0; i<length; i++)
+    {
+        if(vdata[i].pow == pow)
+        {
+            flag = true;
+            break;
+        }
+    }
+    if(flag)
+    {
+        return getVar(pow);
+    }
+    throw std::runtime_error("err with overloaded func at()");
+}
+
+Variable &TetoPolynomial::operator[](unsigned long index)
+{
+    return getVar(index);
 }

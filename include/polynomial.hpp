@@ -12,6 +12,8 @@ private:
     std::size_t length = 0;
     void addVar(double k, unsigned long pow);
     void addVar(Variable var);
+    Variable& getVar(unsigned long pow);
+
 
 public:
     TetoPolynomial() = default;
@@ -25,10 +27,14 @@ public:
     TetoPolynomial(std::initializer_list<Variable> pol);
     ~TetoPolynomial();
 
-    [[nodiscard]]
-    double Calculate(double val);
+    void printData();
 
-    void getData();
+
+    
+    [[nodiscard]] double Calculate(double val);
+    [[nodiscard]] Variable& at(unsigned long pow);
+    [[nodiscard]] Variable& operator[](unsigned long index);
+
 
 
 };

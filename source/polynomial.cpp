@@ -145,7 +145,205 @@ Variable &TetoPolynomial::at(unsigned long pow)
     throw std::runtime_error("err with overloaded func at()");
 }
 
-Variable &TetoPolynomial::operator[](unsigned long index)
+Variable &TetoPolynomial::operator[](unsigned long index) noexcept
 {
     return getVar(index);
+}
+
+TetoPolynomial &TetoPolynomial::operator=(const TetoPolynomial &rhs)
+{
+    // TODO: insert return statement here
+}
+
+TetoPolynomial &TetoPolynomial::operator=(TetoPolynomial &&rhs) noexcept
+{
+    // TODO: insert return statement here
+}
+
+auto TetoPolynomial::operator+=(const TetoPolynomial rhs) -> TetoPolynomial &
+{
+    // TODO: insert return statement here
+}
+
+auto TetoPolynomial::operator+=(const Variable &rhs) -> TetoPolynomial &
+{
+    // TODO: insert return statement here
+}
+
+auto TetoPolynomial::operator-=(const TetoPolynomial rhs) -> TetoPolynomial &
+{
+    // TODO: insert return statement here
+}
+
+auto TetoPolynomial::operator-=(const Variable &rhs) -> TetoPolynomial &
+{
+    // TODO: insert return statement here
+}
+
+auto TetoPolynomial::operator-() const -> TetoPolynomial
+{
+    return TetoPolynomial();
+}
+
+auto TetoPolynomial::operator*=(const TetoPolynomial rhs) -> TetoPolynomial &
+{
+    // TODO: insert return statement here
+}
+
+auto TetoPolynomial::operator*=(const Variable &rhs) -> TetoPolynomial &
+{
+    // TODO: insert return statement here
+}
+
+auto TetoPolynomial::operator/=(const TetoPolynomial rhs) -> TetoPolynomial &
+{
+    // TODO: insert return statement here
+}
+
+auto TetoPolynomial::operator/=(const Variable &rhs) -> TetoPolynomial &
+{
+    // TODO: insert return statement here
+}
+
+auto TetoPolynomial::operator%=(const TetoPolynomial rhs) -> TetoPolynomial
+{
+    return TetoPolynomial();
+}
+
+auto TetoPolynomial::operator%=(const Variable &rhs) -> TetoPolynomial
+{
+    return TetoPolynomial();
+}
+
+Variable Variable::operator-() const
+{
+    return Variable{-c,pow};
+}
+
+Variable &Variable::operator=(double _c)
+{
+    c = _c;
+    return *this;
+}
+
+bool operator==(const Variable &lhs, const Variable &rhs)
+{
+    if(lhs.c != rhs.c) return false;
+    if(lhs.pow != rhs.pow) return false;
+    return true;
+}
+
+bool operator!=(const Variable &lhs, const Variable &rhs)
+{
+    return !operator==(lhs, rhs);
+}
+
+Variable operator/(const Variable &lhs, const Variable &rhs)
+{
+    return Variable();
+}
+
+auto operator+(TetoPolynomial lhs, const TetoPolynomial &rhs) -> TetoPolynomial
+{
+    return TetoPolynomial();
+}
+
+auto operator+(TetoPolynomial lhs, const Variable &rhs) -> TetoPolynomial
+{
+    return TetoPolynomial();
+}
+
+auto operator+(Variable lhs, const TetoPolynomial &rhs) -> TetoPolynomial
+{
+    return TetoPolynomial();
+}
+
+auto operator-(TetoPolynomial lhs, const TetoPolynomial &rhs) -> TetoPolynomial
+{
+    return TetoPolynomial();
+}
+
+auto operator-(TetoPolynomial lhs, const Variable &rhs) -> TetoPolynomial
+{
+    return TetoPolynomial();
+}
+
+auto operator-(Variable lhs, const TetoPolynomial &rhs) -> TetoPolynomial
+{
+    return TetoPolynomial();
+}
+
+auto operator*(TetoPolynomial lhs, const TetoPolynomial &rhs) -> TetoPolynomial
+{
+    return TetoPolynomial();
+}
+
+auto operator*(TetoPolynomial lhs, const Variable &rhs) -> TetoPolynomial
+{
+    return TetoPolynomial();
+}
+
+auto operator*(Variable lhs, const TetoPolynomial &rhs) -> TetoPolynomial
+{
+    return TetoPolynomial();
+}
+
+auto operator/(TetoPolynomial lhs, const TetoPolynomial &rhs) -> TetoPolynomial
+{
+    return TetoPolynomial();
+}
+
+auto operator/(TetoPolynomial lhs, const Variable &rhs) -> TetoPolynomial
+{
+    return TetoPolynomial();
+}
+
+auto operator/(Variable lhs, const TetoPolynomial &rhs) -> TetoPolynomial
+{
+    return TetoPolynomial();
+}
+
+auto operator%(TetoPolynomial lhs, const TetoPolynomial &rhs) -> TetoPolynomial
+{
+    return TetoPolynomial();
+}
+
+auto operator%(TetoPolynomial lhs, const Variable &rhs) -> TetoPolynomial
+{
+    return TetoPolynomial();
+}
+
+auto operator%(Variable lhs, const TetoPolynomial &rhs) -> TetoPolynomial
+{
+    return TetoPolynomial();
+}
+
+auto operator==(const TetoPolynomial &lhs, const TetoPolynomial &rhs) -> bool
+{
+    return false;
+}
+
+auto operator==(const TetoPolynomial &lhs, const Variable &rhs) -> bool
+{
+    return false;
+}
+
+auto operator==(const Variable &lhs, const TetoPolynomial &rhs) -> bool
+{
+    return false;
+}
+
+auto operator!=(const TetoPolynomial &lhs, const TetoPolynomial &rhs) -> bool
+{
+    return false;
+}
+
+auto operator!=(const TetoPolynomial &lhs, const Variable &rhs) -> bool
+{
+    return false;
+}
+
+auto operator!=(const Variable &lhs, const TetoPolynomial &rhs) -> bool
+{
+    return false;
 }

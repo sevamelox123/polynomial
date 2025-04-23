@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <sstream>
 struct Variable
 {
     double c;
@@ -10,6 +11,8 @@ struct Variable
     friend bool operator==(const Variable &lhs, const Variable &rhs);
     friend bool operator!=(const Variable &lhs, const Variable &rhs);
     friend Variable operator/(const Variable &lhs, const Variable &rhs);
+
+    
 };
 
 bool operator==(const Variable &lhs, const Variable &rhs);
@@ -25,6 +28,11 @@ private:
     void addVar(double c, unsigned long pow);
     void addVar(Variable var);
     Variable &getVar(unsigned long pow);
+
+
+
+
+    void reset();
 
 public:
     /**
@@ -68,41 +76,32 @@ public:
     [[nodiscard]] Variable &operator[](unsigned long index) noexcept;
 
 
+    [[nodiscard]] long unsigned getMaxPow() const;
+
+
 
     TetoPolynomial& operator=(const TetoPolynomial& rhs);
     TetoPolynomial& operator=(TetoPolynomial&& rhs) noexcept;
+    TetoPolynomial& operator+=(const TetoPolynomial rhs);
+    TetoPolynomial& operator+=(const Variable& rhs);
+    friend TetoPolynomial operator+(TetoPolynomial lhs, const TetoPolynomial& rhs);
+    TetoPolynomial& operator-=(const TetoPolynomial rhs);
+    TetoPolynomial& operator-=(const Variable& rhs);
+    friend TetoPolynomial operator-(TetoPolynomial lhs, const TetoPolynomial& rhs);
+    TetoPolynomial& operator-() const;
+    TetoPolynomial& operator*=(const TetoPolynomial rhs);
+    TetoPolynomial& operator*=(const Variable& rhs);
+    friend TetoPolynomial operator*(TetoPolynomial lhs, const TetoPolynomial& rhs);
+    TetoPolynomial& operator/=(const TetoPolynomial rhs);
+    TetoPolynomial& operator/=(const Variable& rhs);
+    friend TetoPolynomial operator/(TetoPolynomial lhs, const TetoPolynomial& rhs);
+    TetoPolynomial& operator%=(const TetoPolynomial rhs);
+    TetoPolynomial& operator%=(const Variable& rhs);
+    friend TetoPolynomial operator%(TetoPolynomial lhs, const TetoPolynomial& rhs);
 
-    auto operator+=(const TetoPolynomial rhs) -> TetoPolynomial&;
-    auto operator+=(const Variable& rhs) -> TetoPolynomial&;
-    friend auto operator+(TetoPolynomial lhs, const TetoPolynomial& rhs) -> TetoPolynomial;
-    friend auto operator+(TetoPolynomial lhs, const Variable& rhs) -> TetoPolynomial;
-    friend auto operator+(Variable lhs, const TetoPolynomial& rhs) -> TetoPolynomial;
-    auto operator-=(const TetoPolynomial rhs) -> TetoPolynomial&;
-    auto operator-=(const Variable& rhs) -> TetoPolynomial&;
-    friend auto operator-(TetoPolynomial lhs, const TetoPolynomial& rhs) -> TetoPolynomial;
-    friend auto operator-(TetoPolynomial lhs, const Variable& rhs) -> TetoPolynomial;
-    friend auto operator-(Variable lhs, const TetoPolynomial& rhs) -> TetoPolynomial;
-    auto operator-() const -> TetoPolynomial;
-    auto operator*=(const TetoPolynomial rhs) -> TetoPolynomial&;
-    auto operator*=(const Variable& rhs) -> TetoPolynomial&;
-    friend auto operator*(TetoPolynomial lhs, const TetoPolynomial& rhs) -> TetoPolynomial;
-    friend auto operator*(TetoPolynomial lhs, const Variable& rhs) -> TetoPolynomial;
-    friend auto operator*(Variable lhs, const TetoPolynomial& rhs) -> TetoPolynomial;
-    auto operator/=(const TetoPolynomial rhs) -> TetoPolynomial&;
-    auto operator/=(const Variable& rhs) -> TetoPolynomial&;
-    friend auto operator/(TetoPolynomial lhs, const TetoPolynomial& rhs) -> TetoPolynomial;
-    friend auto operator/(TetoPolynomial lhs, const Variable& rhs) -> TetoPolynomial;
-    friend auto operator/(Variable lhs, const TetoPolynomial& rhs) -> TetoPolynomial;
-    auto operator%=(const TetoPolynomial rhs) -> TetoPolynomial;
-    auto operator%=(const Variable& rhs) -> TetoPolynomial;
-    friend auto operator%(TetoPolynomial lhs, const TetoPolynomial& rhs) -> TetoPolynomial;
-    friend auto operator%(TetoPolynomial lhs, const Variable& rhs) -> TetoPolynomial;
-    friend auto operator%(Variable lhs, const TetoPolynomial& rhs) -> TetoPolynomial;
+    friend bool operator==(const TetoPolynomial& lhs, const TetoPolynomial& rhs);
+    friend bool operator!=(const TetoPolynomial& lhs, const TetoPolynomial& rhs);
 
-    friend auto operator==(const TetoPolynomial& lhs, const TetoPolynomial& rhs) -> bool;
-    friend auto operator==(const TetoPolynomial& lhs, const Variable& rhs) -> bool;
-    friend auto operator==(const Variable& lhs, const TetoPolynomial& rhs) -> bool;
-    friend auto operator!=(const TetoPolynomial& lhs, const TetoPolynomial& rhs) -> bool;
-    friend auto operator!=(const TetoPolynomial& lhs, const Variable& rhs) -> bool;
-    friend auto operator!=(const Variable& lhs, const TetoPolynomial& rhs) -> bool;
+    operator std::string ();
+    friend auto operator<<(std::ostream& out, const TetoPolynomial& pol) -> std::ostream&;
 };

@@ -92,14 +92,14 @@ TetoPolynomial::TetoPolynomial(double *pol, std::size_t size)
         addVar(pol[i], size - i - 1);
     }
 }
-
+/*
 TetoPolynomial::TetoPolynomial(std::initializer_list<float> pol)
 {
     for (std::size_t i = 0; i < pol.size(); i++)
     {
         addVar(pol.begin()[i], pol.size() - i - 1);
     }
-}
+}*/
 
 TetoPolynomial::TetoPolynomial(std::initializer_list<double> pol)
 {
@@ -374,9 +374,10 @@ TetoPolynomial::operator std::string()
     return ss.str();
 }
 
+
 Variable Variable::operator-() const
 {
-    return Variable{-c, pow};
+    return Variable(-c, pow);
 }
 
 Variable &Variable::operator=(double _c)
@@ -401,7 +402,10 @@ bool operator!=(const Variable &lhs, const Variable &rhs)
 
 Variable operator/(const Variable &lhs, const Variable &rhs)
 {
-    return Variable();
+    int c = lhs.c / rhs.c;
+    unsigned int pow = lhs.pow - rhs.pow;
+    return Variable(c,pow); 
+
 }
 
 TetoPolynomial operator+(TetoPolynomial lhs, const TetoPolynomial &rhs)
@@ -409,7 +413,19 @@ TetoPolynomial operator+(TetoPolynomial lhs, const TetoPolynomial &rhs)
     lhs += rhs;
     return lhs;
 }
+/*
+TetoPolynomial operator+(int lhs, const TetoPolynomial &rhs)
+{
+    Variable var{lhs, 0};
+    return operator+(var, rhs);
+}
 
+TetoPolynomial operator+(TetoPolynomial lhs, int rhs)
+{
+    Variable var{rhs, 0};
+    return operator+(lhs, var);
+}
+*/
 TetoPolynomial operator-(TetoPolynomial lhs, const TetoPolynomial &rhs)
 {
     lhs -= rhs;
@@ -464,7 +480,7 @@ bool operator!=(const TetoPolynomial &lhs, const TetoPolynomial &rhs)
     return !operator==(lhs, rhs);
 }
 
-auto operator<<(std::ostream &out, const TetoPolynomial &pol) -> std::ostream &
+std::ostream& operator<<(std::ostream &out, const TetoPolynomial &pol)
 {
     TetoPolynomial copy(pol);
     out << std::string(copy);

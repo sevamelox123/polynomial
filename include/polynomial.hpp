@@ -5,7 +5,9 @@ struct Variable
 {
     double c;
     unsigned long pow;
-
+    Variable(){c=0; pow =0; }
+    Variable(double x){c=x; pow  =0; }
+    Variable(double c, unsigned long pow){this->c=c; this->pow  =pow; }
     Variable operator-() const;
     Variable &operator=(double _c);
     friend bool operator==(const Variable &lhs, const Variable &rhs);
@@ -43,11 +45,12 @@ public:
      * @brief Constructor that accepts Variable and add it into the poly.
      */
     TetoPolynomial(Variable var);
+    TetoPolynomial(double var){addVar(var);}
     TetoPolynomial(const TetoPolynomial &obj);
     TetoPolynomial(TetoPolynomial &&obj) noexcept;
     TetoPolynomial(float *pol, std::size_t size);
     TetoPolynomial(double *pol, std::size_t size);
-    TetoPolynomial(std::initializer_list<float> pol);
+    //TetoPolynomial(std::initializer_list<float> pol);
     TetoPolynomial(std::initializer_list<double> pol);
     TetoPolynomial(std::initializer_list<Variable> pol);
     ~TetoPolynomial();
@@ -73,11 +76,10 @@ public:
      * @param pow power of variable
      * @return c or pow if needed
      */
-    [[nodiscard]] Variable &operator[](unsigned long index) noexcept;
+    [[nodiscard]] Variable &operator[](unsigned long index) noexcept;//2
 
 
     [[nodiscard]] long unsigned getMaxPow() const;
-
 
 
     TetoPolynomial& operator=(const TetoPolynomial& rhs);
@@ -102,6 +104,8 @@ public:
     friend bool operator==(const TetoPolynomial& lhs, const TetoPolynomial& rhs);
     friend bool operator!=(const TetoPolynomial& lhs, const TetoPolynomial& rhs);
 
+    //friend TetoPolynomial operator+(TetoPolynomial lhs, int rhs);
+    //friend TetoPolynomial operator+(int lhs, const TetoPolynomial& rhs);
     operator std::string ();
     friend auto operator<<(std::ostream& out, const TetoPolynomial& pol) -> std::ostream&;
 };
